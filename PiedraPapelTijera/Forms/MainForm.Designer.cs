@@ -70,6 +70,7 @@
             // picMinimizar
             // 
             picMinimizar.BackgroundImageLayout = ImageLayout.Zoom;
+            picMinimizar.Cursor = Cursors.Hand;
             picMinimizar.Image = Properties.Resources.minimizar;
             picMinimizar.Location = new Point(713, 2);
             picMinimizar.Name = "picMinimizar";

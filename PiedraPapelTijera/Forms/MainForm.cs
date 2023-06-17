@@ -11,7 +11,7 @@ namespace Forms
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            OpenChildForms(new OnsetForm(this));
+            OpenChildForms(new OnsetSettingsForm(this));
         }
 
         private void picMinimizar_Click(object sender, EventArgs e)
