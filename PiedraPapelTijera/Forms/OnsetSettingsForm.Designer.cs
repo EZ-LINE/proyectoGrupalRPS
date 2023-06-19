@@ -34,6 +34,10 @@
             textNroJugadores = new TextBox();
             textNroRondas = new TextBox();
             botonPlay = new FontAwesome.Sharp.IconButton();
+            botonConfirmarJugadores = new FontAwesome.Sharp.IconButton();
+            botonConfirmarRondas = new FontAwesome.Sharp.IconButton();
+            labelErrorJugadores = new Label();
+            labelErrorRondas = new Label();
             SuspendLayout();
             // 
             // botonIniciar
@@ -84,15 +88,18 @@
             // 
             textNroJugadores.Location = new Point(269, 358);
             textNroJugadores.Name = "textNroJugadores";
-            textNroJugadores.Size = new Size(90, 23);
+            textNroJugadores.Size = new Size(40, 23);
             textNroJugadores.TabIndex = 3;
+            textNroJugadores.KeyPress += textNroJugadores_KeyPress;
             // 
             // textNroRondas
             // 
+            textNroRondas.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             textNroRondas.Location = new Point(599, 358);
             textNroRondas.Name = "textNroRondas";
-            textNroRondas.Size = new Size(90, 23);
+            textNroRondas.Size = new Size(40, 23);
             textNroRondas.TabIndex = 4;
+            textNroRondas.KeyPress += textNroRondas_KeyPress;
             // 
             // botonPlay
             // 
@@ -111,8 +118,65 @@
             botonPlay.Name = "botonPlay";
             botonPlay.Size = new Size(40, 40);
             botonPlay.TabIndex = 5;
+            botonPlay.TabStop = false;
             botonPlay.UseVisualStyleBackColor = false;
             botonPlay.Click += botonPlay_Click;
+            // 
+            // botonConfirmarJugadores
+            // 
+            botonConfirmarJugadores.BackColor = Color.Black;
+            botonConfirmarJugadores.FlatAppearance.BorderColor = Color.White;
+            botonConfirmarJugadores.FlatStyle = FlatStyle.Flat;
+            botonConfirmarJugadores.IconChar = FontAwesome.Sharp.IconChar.Check;
+            botonConfirmarJugadores.IconColor = Color.White;
+            botonConfirmarJugadores.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            botonConfirmarJugadores.IconSize = 20;
+            botonConfirmarJugadores.Location = new Point(315, 358);
+            botonConfirmarJugadores.Name = "botonConfirmarJugadores";
+            botonConfirmarJugadores.Size = new Size(23, 23);
+            botonConfirmarJugadores.TabIndex = 6;
+            botonConfirmarJugadores.TabStop = false;
+            botonConfirmarJugadores.UseVisualStyleBackColor = false;
+            // 
+            // botonConfirmarRondas
+            // 
+            botonConfirmarRondas.BackColor = Color.Black;
+            botonConfirmarRondas.FlatAppearance.BorderColor = Color.White;
+            botonConfirmarRondas.FlatStyle = FlatStyle.Flat;
+            botonConfirmarRondas.IconChar = FontAwesome.Sharp.IconChar.Check;
+            botonConfirmarRondas.IconColor = Color.White;
+            botonConfirmarRondas.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            botonConfirmarRondas.IconSize = 20;
+            botonConfirmarRondas.Location = new Point(645, 358);
+            botonConfirmarRondas.Name = "botonConfirmarRondas";
+            botonConfirmarRondas.Size = new Size(23, 23);
+            botonConfirmarRondas.TabIndex = 7;
+            botonConfirmarRondas.TabStop = false;
+            botonConfirmarRondas.UseVisualStyleBackColor = false;
+            // 
+            // labelErrorJugadores
+            // 
+            labelErrorJugadores.AutoSize = true;
+            labelErrorJugadores.BackColor = Color.White;
+            labelErrorJugadores.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            labelErrorJugadores.ForeColor = Color.Red;
+            labelErrorJugadores.Location = new Point(71, 384);
+            labelErrorJugadores.Name = "labelErrorJugadores";
+            labelErrorJugadores.Size = new Size(267, 13);
+            labelErrorJugadores.TabIndex = 8;
+            labelErrorJugadores.Text = "ⓘ ERROR. Solo ingrese números (mín. 1 - máx. 10)";
+            // 
+            // labelErrorRondas
+            // 
+            labelErrorRondas.AutoSize = true;
+            labelErrorRondas.BackColor = Color.White;
+            labelErrorRondas.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            labelErrorRondas.ForeColor = Color.Red;
+            labelErrorRondas.Location = new Point(401, 384);
+            labelErrorRondas.Name = "labelErrorRondas";
+            labelErrorRondas.Size = new Size(267, 13);
+            labelErrorRondas.TabIndex = 9;
+            labelErrorRondas.Text = "ⓘ ERROR. Solo ingrese números (mín. 1 - máx. 10)";
             // 
             // OnsetSettingsForm
             // 
@@ -121,6 +185,10 @@
             BackgroundImage = Properties.Resources.piedraPapelTijera;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(800, 416);
+            Controls.Add(labelErrorRondas);
+            Controls.Add(labelErrorJugadores);
+            Controls.Add(botonConfirmarRondas);
+            Controls.Add(botonConfirmarJugadores);
             Controls.Add(botonPlay);
             Controls.Add(textNroRondas);
             Controls.Add(textNroJugadores);
@@ -143,5 +211,9 @@
         private TextBox textNroJugadores;
         private TextBox textNroRondas;
         private FontAwesome.Sharp.IconButton botonPlay;
+        private FontAwesome.Sharp.IconButton botonConfirmarJugadores;
+        private FontAwesome.Sharp.IconButton botonConfirmarRondas;
+        private Label labelErrorJugadores;
+        private Label labelErrorRondas;
     }
 }

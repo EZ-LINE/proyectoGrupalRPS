@@ -8,6 +8,7 @@ using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace Forms
 {
@@ -26,8 +27,12 @@ namespace Forms
         {
             labelNroJugadores.Visible = false;
             textNroJugadores.Visible = false;
+            botonConfirmarJugadores.Visible = false;
+            labelErrorJugadores.Visible = false;
             labelNroRondas.Visible = false;
             textNroRondas.Visible = false;
+            botonConfirmarRondas.Visible = false;
+            labelErrorRondas.Visible = false;
             botonPlay.Visible = false;
         }
 
@@ -38,9 +43,13 @@ namespace Forms
             Thread.Sleep(500);
             labelNroJugadores.Visible = true;
             textNroJugadores.Visible = true;
+            textNroJugadores.Focus();
+            botonConfirmarJugadores.Visible = true;
             labelNroRondas.Visible = true;
             textNroRondas.Visible = true;
+            botonConfirmarRondas.Visible = true;
             botonPlay.Visible = true;
+            botonPlay.Enabled = false;
         }
 
         private void botonPlay_Click(object sender, EventArgs e)
@@ -52,6 +61,40 @@ namespace Forms
         {
             startGame = new SoundPlayer(Properties.Resources.inicio);
             startGame.Play();
+        }
+
+        private void textNroJugadores_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+                labelErrorJugadores.Visible = true;
+                botonConfirmarJugadores.IconColor = Color.Red;
+                botonConfirmarJugadores.FlatAppearance.BorderColor = Color.Red;
+            }
+            else
+            {
+                labelErrorJugadores.Visible = false;
+                botonConfirmarJugadores.IconColor = Color.Green;
+                botonConfirmarJugadores.FlatAppearance.BorderColor = Color.Green;
+            }
+        }
+
+        private void textNroRondas_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+                labelErrorRondas.Visible = true;
+                botonConfirmarRondas.IconColor = Color.Red;
+                botonConfirmarRondas.FlatAppearance.BorderColor = Color.Red;
+            }
+            else
+            {
+                labelErrorRondas.Visible = false;
+                botonConfirmarRondas.IconColor = Color.Green;
+                botonConfirmarRondas.FlatAppearance.BorderColor = Color.Green;
+            }
         }
     }
 }
