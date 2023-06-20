@@ -54,6 +54,7 @@ namespace Forms
 
         private void botonPlay_Click(object sender, EventArgs e)
         {
+            //necesito que le mandes la lista de jugadores y los resultados, por aca o por separado.
             mainForm.OpenChildForms(new RPS_3Form());
         }
 
