@@ -1,21 +1,22 @@
 namespace Forms
 {
-    public partial class Form1 : Form
+    public partial class Jugadas : Form
     {
         Random random = new Random();
         string eleccionJugador = "R";
         string[] nombresJugadores = { "Alberto", "Juan", "pedro" };
         int ronda = 0;
-        static int nroJugadores = 3;
+        static int nroJugadores;
         int[,] resultados = InicializarResultados(nroJugadores);
-        int nroRondas = 3;
-        
+        int nroRondas;
         int jugador = 0;
 
-        public Form1()
+        public Jugadas(int nroRondas, int nroJugadores)
         {
             InitializeComponent();
             btnContinuar.Enabled = false;
+            this.ronda = nroRondas;
+            
         }
 
 
@@ -54,7 +55,7 @@ namespace Forms
             return jugadaCPU;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Jugadas_Load(object sender, EventArgs e)
         {
             lblJugador.Text = $"{nombresJugadores[0]}";
             lblRonda.Text = "1";

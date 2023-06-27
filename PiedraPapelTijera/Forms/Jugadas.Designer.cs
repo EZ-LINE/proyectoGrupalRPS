@@ -1,6 +1,6 @@
 ﻿namespace Forms
 {
-    partial class Form1
+    partial class Jugadas
     {
         /// <summary>
         ///  Required designer variable.
@@ -233,7 +233,7 @@
             btnContinuar.UseVisualStyleBackColor = true;
             btnContinuar.Click += btnContinuar_Click;
             // 
-            // Form1
+            // Jugadas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -256,9 +256,9 @@
             Controls.Add(label3);
             Controls.Add(lblJugador);
             Controls.Add(label1);
-            Name = "Form1";
-            Text = "Form1";
-            Load += Form1_Load;
+            Name = "Jugadas";
+            Text = "Jugadas";
+            Load += Jugadas_Load;
             ResumeLayout(false);
             PerformLayout();
         }

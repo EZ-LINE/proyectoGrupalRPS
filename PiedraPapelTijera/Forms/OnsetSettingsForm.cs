@@ -16,6 +16,9 @@ namespace Forms
     {
         MainForm mainForm;
         SoundPlayer startGame;
+        int nroJugadores;
+        int nroRondas;
+        
 
         public OnsetSettingsForm(MainForm mainForm)
         {
@@ -49,13 +52,15 @@ namespace Forms
             textNroRondas.Visible = true;
             botonConfirmarRondas.Visible = true;
             botonPlay.Visible = true;
-            botonPlay.Enabled = false;
+            botonPlay.Enabled = true;
         }
 
         private void botonPlay_Click(object sender, EventArgs e)
         {
             //necesito que le mandes la lista de jugadores y los resultados, por aca o por separado.
-            mainForm.OpenChildForms(new RPS_3Form());
+            //mainForm.OpenChildForms(new RPS_3Form());
+            mainForm.OpenChildForms(new Jugadas(nroRondas, nroJugadores));
+
         }
 
         private void IniciarJuego()
