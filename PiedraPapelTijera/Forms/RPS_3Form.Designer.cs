@@ -202,6 +202,7 @@
             this.playerLabel.TabIndex = 1;
             this.playerLabel.Text = "PLAYER";
             this.playerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.playerLabel.Click += new System.EventHandler(this.playerLabel_Click);
             // 
             // txtPlayerName
             // 

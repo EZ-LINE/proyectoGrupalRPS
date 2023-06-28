@@ -122,6 +122,11 @@ namespace Forms
             //try to load previous player
             _ = currentPlayer > 0 ? currentPlayer-- : currentPlayer = nombreJugadores.Length;
         }
+
+        private void playerLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

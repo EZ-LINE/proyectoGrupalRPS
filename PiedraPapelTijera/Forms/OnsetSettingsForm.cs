@@ -16,8 +16,9 @@ namespace Forms
     {
         MainForm mainForm;
         SoundPlayer startGame;
-        int nroJugadores;
-        int nroRondas;
+        int nroJugadores = 0;
+        int nroRondas = 0;
+        List<String> jugadores = new List<String>();
         
 
         public OnsetSettingsForm(MainForm mainForm)
@@ -28,15 +29,14 @@ namespace Forms
 
         private void OnsetSettingsForm_Load(object sender, EventArgs e)
         {
-            labelNroJugadores.Visible = false;
-            textNroJugadores.Visible = false;
-            botonConfirmarJugadores.Visible = false;
-            labelErrorJugadores.Visible = false;
+            lblNewPlayer.Visible = false;
+            textnewPlayerInput.Visible = false;
             labelNroRondas.Visible = false;
             textNroRondas.Visible = false;
             botonConfirmarRondas.Visible = false;
             labelErrorRondas.Visible = false;
             botonPlay.Visible = false;
+            playerInputError.Visible = false;
         }
 
         private void botonIniciar_Click(object sender, EventArgs e)
@@ -44,10 +44,9 @@ namespace Forms
             botonIniciar.Visible = false;
             IniciarJuego();
             Thread.Sleep(500);
-            labelNroJugadores.Visible = true;
-            textNroJugadores.Visible = true;
-            textNroJugadores.Focus();
-            botonConfirmarJugadores.Visible = true;
+            lblNewPlayer.Visible = true;
+            textnewPlayerInput.Visible = true;
+            textnewPlayerInput.Focus();
             labelNroRondas.Visible = true;
             textNroRondas.Visible = true;
             botonConfirmarRondas.Visible = true;
@@ -69,22 +68,6 @@ namespace Forms
             startGame.Play();
         }
 
-        private void textNroJugadores_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-                labelErrorJugadores.Visible = true;
-                botonConfirmarJugadores.IconColor = Color.Red;
-                botonConfirmarJugadores.FlatAppearance.BorderColor = Color.Red;
-            }
-            else
-            {
-                labelErrorJugadores.Visible = false;
-                botonConfirmarJugadores.IconColor = Color.Green;
-                botonConfirmarJugadores.FlatAppearance.BorderColor = Color.Green;
-            }
-        }
 
         private void textNroRondas_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -102,5 +85,40 @@ namespace Forms
                 botonConfirmarRondas.FlatAppearance.BorderColor = Color.Green;
             }
         }
+
+        private void labelNroJugadores_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textnewPlayer_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addNewPlayerButton_Click(object sender, EventArgs e)
+        {
+            //add new player
+            if (textnewPlayerInput.Text != "" && nroJugadores < 10) 
+            {
+                //field is not empty. Add new player
+                playerInputError.Visible = false;
+                nroJugadores++;
+                jugadores.Add(textnewPlayerInput.Text);
+                lblTotalPlayers.Text = "Jugadores activos: "+nroJugadores;
+                textnewPlayerInput.Text = "";
+            } else if (nroJugadores>= 10) 
+            {
+                playerInputError.Visible = true;
+                playerInputError.Text = "ⓘError: Se supero la cantidad maxima de jugadores (10)";
+            }else 
+            {
+                playerInputError.Visible = true;
+                playerInputError.Text = "ⓘError: El nombre no puede estar vacio";
+            }
+        }
     }
+    
+    
+
 }
