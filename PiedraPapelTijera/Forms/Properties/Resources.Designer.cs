@@ -71,12 +71,11 @@ namespace Forms.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static byte[] error {
+        internal static System.IO.UnmanagedMemoryStream click {
             get {
-                object obj = ResourceManager.GetObject("error", resourceCulture);
-                return ((byte[])(obj));
+                return ResourceManager.GetStream("click", resourceCulture);
             }
         }
         
