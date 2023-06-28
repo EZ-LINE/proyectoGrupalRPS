@@ -6,25 +6,27 @@ namespace Forms
         string eleccionJugador = "R";
         string[] nombresJugadores;
         int ronda = 0;
-        static int nroJugadores;
-        int[,] resultados = InicializarResultados(nroJugadores);
+        int nroJugadores;
+        int[,] resultados;
         int nroRondas;
         int jugador = 0;
+        
 
         public Jugadas(int nroRondas, List<string> jugadores)
         {
             InitializeComponent();
             btnContinuar.Enabled = false;
-            this.ronda = nroRondas;
-<<<<<<< HEAD
-
-=======
+            this.nroRondas = nroRondas;
             nroJugadores = jugadores.Count;
+            //Se utiliza un arreglo bidimensional para guardar los resultados de los jugadores.
+            //Las filas contendrán una longitud de acuerdo al número de jugadores, luego
+            //se utilizarán las columnas para guardar los resultados generales de acuerdo al 
+            //siguiente criterio:
+            //[i, 0] -> ganados, [i, 1] -> empatados, [i, 2] -> perdidos, [i, 3] -> puntos
+            resultados = new int[nroJugadores,4]; 
             nombresJugadores = new string[nroJugadores];
             AgregameLosJugadores(jugadores);
-
             
->>>>>>> 8484aa5386fd96b37680d808ef9ad5d17dfe7f7a
         }
 
 
@@ -74,6 +76,7 @@ namespace Forms
         {
             lblJugador.Text = $"{nombresJugadores[0]}";
             lblRonda.Text = "1";
+            
         }
 
 
@@ -194,6 +197,7 @@ namespace Forms
             int puntos = CalcularPuntos(resultado);
             resultados[jugador, 3] += puntos;
 
+            
             lblResultado.Text = $"{ObtenerTextoResultado(resultado)}";
             lblPuntos.Text = $"{puntos}";
 
@@ -258,18 +262,6 @@ namespace Forms
             }
             return infoResultado;
         }
-
-        static int[,] InicializarResultados(int cantidadJugadores)
-        {
-            //Se utiliza un arreglo bidimensional para guardar los resultados de los jugadores.
-            //Las filas contendrán una longitud de acuerdo al número de jugadores, luego
-            //se utilizarán las columnas para guardar los resultados generales de acuerdo al 
-            //siguiente criterio:
-            //[i, 0] -> ganados, [i, 1] -> empatados, [i, 2] -> perdidos, [i, 3] -> puntos
-            int[,] resultados = new int[cantidadJugadores, 4];
-            return resultados;
-        }
-
 
 
         private void lblJugador_Click(object sender, EventArgs e)

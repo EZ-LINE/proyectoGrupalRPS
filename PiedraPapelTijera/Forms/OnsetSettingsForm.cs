@@ -17,17 +17,13 @@ namespace Forms
     {
         MainForm mainForm;
         SoundPlayer startGame;
-<<<<<<< HEAD
+
         int nroJugadores;
         int nroRondas;
-
-=======
-        int nroJugadores = 0;
-        int nroRondas = 0;
         List<String> jugadores = new List<String>();
         bool validRoundNumber = false;
         
->>>>>>> 8484aa5386fd96b37680d808ef9ad5d17dfe7f7a
+
 
         public OnsetSettingsForm(MainForm mainForm)
         {
