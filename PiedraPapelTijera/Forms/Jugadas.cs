@@ -11,15 +11,30 @@ namespace Forms
         int nroRondas;
         int jugador = 0;
 
-        public Jugadas(int nroRondas, int nroJugadores)
+        public Jugadas(int nroRondas, List<string> jugadores)
         {
             InitializeComponent();
             btnContinuar.Enabled = false;
             this.ronda = nroRondas;
+<<<<<<< HEAD
 
+=======
+            nroJugadores = jugadores.Count;
+            nombresJugadores = new string[nroJugadores];
+            AgregameLosJugadores(jugadores);
+
+            
+>>>>>>> 8484aa5386fd96b37680d808ef9ad5d17dfe7f7a
         }
 
 
+        void AgregameLosJugadores(List<string> jugadores) 
+        {
+            for (int i = 0; i < jugadores.Count; i++)
+            {
+                nombresJugadores[i] = jugadores[i];
+            }
+        }
 
         private void label1_Click(object sender, EventArgs e)
         {

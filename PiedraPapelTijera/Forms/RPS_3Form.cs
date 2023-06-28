@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Forms.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -32,7 +33,7 @@ namespace Forms
         private void PlayEndgameSequence() 
         {
             UpdatePlayerCounter(0);
-
+            //Encontrar un archivo compatible wav es dolor. Esto va a crashear dado que este archivo no existe
             SoundPlayer sadHorn = new SoundPlayer("resources/sadHorn.wav");
             
             txtCongratulations.Text = "GAME: ...";
@@ -74,7 +75,7 @@ namespace Forms
         //de tal forma que la funcion anterior se reduce a 4 lineas
         private void ClackAndWait(int time) 
         {
-            SoundPlayer clack = new SoundPlayer("resources/clack.mp3");
+            SoundPlayer clack = new SoundPlayer(Resources.click);
             clack.Play();
             System.Threading.Thread.Sleep(time);
         }
@@ -121,6 +122,11 @@ namespace Forms
         {
             //try to load previous player
             _ = currentPlayer > 0 ? currentPlayer-- : currentPlayer = nombreJugadores.Length;
+        }
+
+        private void playerLabel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Forms.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,9 +17,17 @@ namespace Forms
     {
         MainForm mainForm;
         SoundPlayer startGame;
+<<<<<<< HEAD
         int nroJugadores;
         int nroRondas;
 
+=======
+        int nroJugadores = 0;
+        int nroRondas = 0;
+        List<String> jugadores = new List<String>();
+        bool validRoundNumber = false;
+        
+>>>>>>> 8484aa5386fd96b37680d808ef9ad5d17dfe7f7a
 
         public OnsetSettingsForm(MainForm mainForm)
         {
@@ -28,15 +37,17 @@ namespace Forms
 
         private void OnsetSettingsForm_Load(object sender, EventArgs e)
         {
-            labelNroJugadores.Visible = false;
-            textNroJugadores.Visible = false;
-            botonConfirmarJugadores.Visible = false;
-            labelErrorJugadores.Visible = false;
+            lblNewPlayer.Visible = false;
+            textnewPlayerInput.Visible = false;
             labelNroRondas.Visible = false;
             textNroRondas.Visible = false;
             botonConfirmarRondas.Visible = false;
             labelErrorRondas.Visible = false;
             botonPlay.Visible = false;
+            playerInputError.Visible = false;
+            lblTotalPlayers.Visible = false; 
+            addNewPlayerButton.Visible = false;
+
         }
 
         private void botonIniciar_Click(object sender, EventArgs e)
@@ -44,22 +55,31 @@ namespace Forms
             botonIniciar.Visible = false;
             IniciarJuego();
             Thread.Sleep(500);
-            labelNroJugadores.Visible = true;
-            textNroJugadores.Visible = true;
-            textNroJugadores.Focus();
-            botonConfirmarJugadores.Visible = true;
+            lblNewPlayer.Visible = true;
+            textnewPlayerInput.Visible = true;
+            textnewPlayerInput.Focus();
             labelNroRondas.Visible = true;
             textNroRondas.Visible = true;
             botonConfirmarRondas.Visible = true;
             botonPlay.Visible = true;
             botonPlay.Enabled = true;
+            lblTotalPlayers.Visible = true;
+            addNewPlayerButton.Visible = true; 
         }
 
         private void botonPlay_Click(object sender, EventArgs e)
         {
-            //necesito que le mandes la lista de jugadores y los resultados, por aca o por separado.
-            //mainForm.OpenChildForms(new RPS_3Form());
-            mainForm.OpenChildForms(new Jugadas(nroRondas, nroJugadores));
+            if (nroRondas != 0 && jugadores.Count > 0)
+            {
+                mainForm.OpenChildForms(new Jugadas(nroRondas, jugadores));
+            }
+            else 
+            {
+                SoundPlayer errorSound = new SoundPlayer(Resources.inicio);
+                errorSound.Play();
+            }
+
+            
 
         }
 
@@ -69,22 +89,6 @@ namespace Forms
             startGame.Play();
         }
 
-        private void textNroJugadores_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-                labelErrorJugadores.Visible = true;
-                botonConfirmarJugadores.IconColor = Color.Red;
-                botonConfirmarJugadores.FlatAppearance.BorderColor = Color.Red;
-            }
-            else
-            {
-                labelErrorJugadores.Visible = false;
-                botonConfirmarJugadores.IconColor = Color.Green;
-                botonConfirmarJugadores.FlatAppearance.BorderColor = Color.Green;
-            }
-        }
 
         private void textNroRondas_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -94,13 +98,59 @@ namespace Forms
                 labelErrorRondas.Visible = true;
                 botonConfirmarRondas.IconColor = Color.Red;
                 botonConfirmarRondas.FlatAppearance.BorderColor = Color.Red;
+                validRoundNumber = false;
             }
             else
             {
                 labelErrorRondas.Visible = false;
                 botonConfirmarRondas.IconColor = Color.Green;
                 botonConfirmarRondas.FlatAppearance.BorderColor = Color.Green;
+                validRoundNumber = true;
+            }
+        }
+
+        private void labelNroJugadores_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textnewPlayer_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addNewPlayerButton_Click(object sender, EventArgs e)
+        {
+            //add new player
+            if (textnewPlayerInput.Text != "" && nroJugadores < 10) 
+            {
+                //field is not empty. Add new player
+                playerInputError.Visible = false;
+                nroJugadores++;
+                jugadores.Add(textnewPlayerInput.Text);
+                lblTotalPlayers.Text = "Jugadores activos: "+nroJugadores;
+                textnewPlayerInput.Text = "";
+            } else if (nroJugadores>= 10) 
+            {
+                playerInputError.Visible = true;
+                playerInputError.Text = "ⓘError: Se supero la cantidad maxima de jugadores (10)";
+            }else 
+            {
+                playerInputError.Visible = true;
+                playerInputError.Text = "ⓘError: El nombre no puede estar vacio";
+            }
+        }
+
+        private void botonConfirmarRondas_Click(object sender, EventArgs e)
+        {
+            //Confimar numero ronda
+            if (validRoundNumber) 
+            {
+                nroRondas = Convert.ToInt32(textNroRondas.Text);
             }
         }
     }
+    
+    
+
 }
