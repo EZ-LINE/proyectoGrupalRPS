@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Forms.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,6 +20,7 @@ namespace Forms
         int nroJugadores = 0;
         int nroRondas = 0;
         List<String> jugadores = new List<String>();
+        bool validRoundNumber = false;
         
 
         public OnsetSettingsForm(MainForm mainForm)
@@ -37,6 +39,9 @@ namespace Forms
             labelErrorRondas.Visible = false;
             botonPlay.Visible = false;
             playerInputError.Visible = false;
+            lblTotalPlayers.Visible = false; 
+            addNewPlayerButton.Visible = false;
+
         }
 
         private void botonIniciar_Click(object sender, EventArgs e)
@@ -52,13 +57,23 @@ namespace Forms
             botonConfirmarRondas.Visible = true;
             botonPlay.Visible = true;
             botonPlay.Enabled = true;
+            lblTotalPlayers.Visible = true;
+            addNewPlayerButton.Visible = true; 
         }
 
         private void botonPlay_Click(object sender, EventArgs e)
         {
-            //necesito que le mandes la lista de jugadores y los resultados, por aca o por separado.
-            //mainForm.OpenChildForms(new RPS_3Form());
-            mainForm.OpenChildForms(new Jugadas(nroRondas, nroJugadores));
+            if (nroRondas != 0 && jugadores.Count > 0)
+            {
+                mainForm.OpenChildForms(new Jugadas(nroRondas, jugadores));
+            }
+            else 
+            {
+                SoundPlayer errorSound = new SoundPlayer(Resources.inicio);
+                errorSound.Play();
+            }
+
+            
 
         }
 
@@ -77,12 +92,14 @@ namespace Forms
                 labelErrorRondas.Visible = true;
                 botonConfirmarRondas.IconColor = Color.Red;
                 botonConfirmarRondas.FlatAppearance.BorderColor = Color.Red;
+                validRoundNumber = false;
             }
             else
             {
                 labelErrorRondas.Visible = false;
                 botonConfirmarRondas.IconColor = Color.Green;
                 botonConfirmarRondas.FlatAppearance.BorderColor = Color.Green;
+                validRoundNumber = true;
             }
         }
 
@@ -115,6 +132,15 @@ namespace Forms
             {
                 playerInputError.Visible = true;
                 playerInputError.Text = "ⓘError: El nombre no puede estar vacio";
+            }
+        }
+
+        private void botonConfirmarRondas_Click(object sender, EventArgs e)
+        {
+            //Confimar numero ronda
+            if (validRoundNumber) 
+            {
+                nroRondas = Convert.ToInt32(textNroRondas.Text);
             }
         }
     }

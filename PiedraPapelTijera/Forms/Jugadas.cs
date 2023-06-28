@@ -4,22 +4,33 @@ namespace Forms
     {
         Random random = new Random();
         string eleccionJugador = "R";
-        string[] nombresJugadores = { "Alberto", "Juan", "pedro" };
+        string[] nombresJugadores;
         int ronda = 0;
         static int nroJugadores;
         int[,] resultados = InicializarResultados(nroJugadores);
         int nroRondas;
         int jugador = 0;
 
-        public Jugadas(int nroRondas, int nroJugadores)
+        public Jugadas(int nroRondas, List<string> jugadores)
         {
             InitializeComponent();
             btnContinuar.Enabled = false;
             this.ronda = nroRondas;
+            nroJugadores = jugadores.Count;
+            nombresJugadores = new string[nroJugadores];
+            AgregameLosJugadores(jugadores);
+
             
         }
 
 
+        void AgregameLosJugadores(List<string> jugadores) 
+        {
+            for (int i = 0; i < jugadores.Count; i++)
+            {
+                nombresJugadores[i] = jugadores[i];
+            }
+        }
 
         private void label1_Click(object sender, EventArgs e)
         {

@@ -61,6 +61,7 @@
             this.botonIniciar.Text = "INICIA JUEGO";
             this.botonIniciar.TextColor = System.Drawing.Color.DarkTurquoise;
             this.botonIniciar.UseVisualStyleBackColor = false;
+            this.botonIniciar.Click += new System.EventHandler(this.botonIniciar_Click);
             // 
             // lblNewPlayer
             // 
@@ -87,7 +88,7 @@
             // 
             // textnewPlayerInput
             // 
-            this.textnewPlayerInput.Location = new System.Drawing.Point(41, 78);
+            this.textnewPlayerInput.Location = new System.Drawing.Point(41, 82);
             this.textnewPlayerInput.Name = "textnewPlayerInput";
             this.textnewPlayerInput.Size = new System.Drawing.Size(199, 23);
             this.textnewPlayerInput.TabIndex = 3;
@@ -100,6 +101,7 @@
             this.textNroRondas.Name = "textNroRondas";
             this.textNroRondas.Size = new System.Drawing.Size(40, 23);
             this.textNroRondas.TabIndex = 4;
+            this.textNroRondas.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textNroRondas_KeyPress);
             // 
             // botonPlay
             // 
@@ -120,6 +122,7 @@
             this.botonPlay.TabIndex = 5;
             this.botonPlay.TabStop = false;
             this.botonPlay.UseVisualStyleBackColor = false;
+            this.botonPlay.Click += new System.EventHandler(this.botonPlay_Click);
             // 
             // botonConfirmarRondas
             // 
@@ -136,6 +139,7 @@
             this.botonConfirmarRondas.TabIndex = 7;
             this.botonConfirmarRondas.TabStop = false;
             this.botonConfirmarRondas.UseVisualStyleBackColor = false;
+            this.botonConfirmarRondas.Click += new System.EventHandler(this.botonConfirmarRondas_Click);
             // 
             // labelErrorRondas
             // 
@@ -214,6 +218,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "OnsetSettingsForm";
             this.Text = "OnsetForm";
+            this.Load += new System.EventHandler(this.OnsetSettingsForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
