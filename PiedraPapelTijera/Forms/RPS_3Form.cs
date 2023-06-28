@@ -40,7 +40,7 @@ namespace Forms
             System.Threading.Thread.Sleep(1000);
             txtCongratulations.Text = "GAME: COMPLETE";
             System.Threading.Thread.Sleep(200);
-            sadHorn.Play();
+            //sadHorn.Play();
             LoadPlayer(0);
 
 

@@ -2,6 +2,7 @@ namespace Forms
 {
     public partial class Jugadas : Form
     {
+        MainForm mainForm;
         Random random = new Random();
         string eleccionJugador = "R";
         string[] nombresJugadores;
@@ -14,6 +15,7 @@ namespace Forms
 
         public Jugadas(int nroRondas, List<string> jugadores)
         {
+
             InitializeComponent();
             btnContinuar.Enabled = false;
             this.nroRondas = nroRondas;
@@ -129,6 +131,8 @@ namespace Forms
             }
             else
             {
+                
+                mainForm.OpenChildForms(new RPS_3Form(nombresJugadores, resultados));
                 btnContinuar.Enabled = false;
                 btnJugar.Enabled = false;
             }
