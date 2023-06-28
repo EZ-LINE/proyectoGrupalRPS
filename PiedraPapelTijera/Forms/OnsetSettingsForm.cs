@@ -18,7 +18,7 @@ namespace Forms
         SoundPlayer startGame;
         int nroJugadores;
         int nroRondas;
-        
+
 
         public OnsetSettingsForm(MainForm mainForm)
         {

@@ -4,7 +4,7 @@ namespace Forms
     {
         Random random = new Random();
         string eleccionJugador = "R";
-        string[] nombresJugadores = { "Alberto", "Juan", "pedro" };
+        string[] nombresJugadores;
         int ronda = 0;
         static int nroJugadores;
         int[,] resultados = InicializarResultados(nroJugadores);
@@ -16,7 +16,7 @@ namespace Forms
             InitializeComponent();
             btnContinuar.Enabled = false;
             this.ronda = nroRondas;
-            
+
         }
 
 
@@ -64,9 +64,9 @@ namespace Forms
 
         void JugarTorneo(int ronda, string[] nombresJugadores, int[,] resultados)
         {
-            if (jugador<nombresJugadores.Length)
+            if (jugador < nombresJugadores.Length)
             {
-                
+
                 btnContinuar.Enabled = false;
                 lblJugador.Text = $"{nombresJugadores[jugador]}";
                 //lblRonda.Text = (ronda+1 ).ToString();
@@ -81,7 +81,7 @@ namespace Forms
 
                 btnJugar.Enabled = false;
                 btnContinuar.Enabled = true;
-                
+
             }
 
         }
@@ -125,7 +125,7 @@ namespace Forms
             lblResultado.Text = "";
             lblPuntos.Text = "";
             lblCPU.Text = "";
-            
+
 
             if (jugador < nombresJugadores.Length)
             {
@@ -133,14 +133,14 @@ namespace Forms
             }
             else if (ronda < nroRondas)
             {
-                
+
                 ronda += 1;
-                lblRonda.Text = (ronda+1).ToString();
+                lblRonda.Text = (ronda + 1).ToString();
                 jugador = 0;
-                   
+
                 lblJugador.Text = $"{nombresJugadores[jugador]}";
             }
-            
+
 
         }
 
@@ -277,6 +277,9 @@ namespace Forms
 
         }
 
+        private void label11_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }

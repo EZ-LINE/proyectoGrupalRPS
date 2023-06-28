@@ -200,9 +200,10 @@
             label11.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             label11.Location = new Point(133, 216);
             label11.Name = "label11";
-            label11.Size = new Size(100, 25);
+            label11.Size = new Size(106, 25);
             label11.TabIndex = 18;
-            label11.Text = "Usted elije";
+            label11.Text = "Usted elige";
+            label11.Click += label11_Click;
             // 
             // lblResultado
             // 
