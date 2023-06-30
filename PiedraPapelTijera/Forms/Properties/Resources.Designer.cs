@@ -127,5 +127,17 @@ namespace Forms.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream sadHorn
+        {
+            get
+            {
+                return ResourceManager.GetStream("sadHorn", resourceCulture);
+            }
+        }
+
     }
 }

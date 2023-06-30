@@ -13,7 +13,7 @@ namespace Forms
         int jugador = 0;
         
 
-        public Jugadas(int nroRondas, List<string> jugadores)
+        public Jugadas(int nroRondas, List<string> jugadores, MainForm mf)
         {
 
             InitializeComponent();
@@ -27,8 +27,9 @@ namespace Forms
             //[i, 0] -> ganados, [i, 1] -> empatados, [i, 2] -> perdidos, [i, 3] -> puntos
             resultados = new int[nroJugadores,4]; 
             nombresJugadores = new string[nroJugadores];
+            mainForm = mf;
             AgregameLosJugadores(jugadores);
-            
+
         }
 
 
@@ -130,8 +131,7 @@ namespace Forms
                 JugarTorneo(ronda, nombresJugadores, resultados);
             }
             else
-            {
-                
+            { 
                 mainForm.OpenChildForms(new RPS_3Form(nombresJugadores, resultados));
                 btnContinuar.Enabled = false;
                 btnJugar.Enabled = false;

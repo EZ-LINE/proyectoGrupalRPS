@@ -67,11 +67,11 @@ namespace Forms
         {
             if (nroRondas != 0 && jugadores.Count > 0)
             {
-                mainForm.OpenChildForms(new Jugadas(nroRondas, jugadores));
+                mainForm.OpenChildForms(new Jugadas(nroRondas, jugadores, mainForm));
             }
             else 
             {
-                SoundPlayer errorSound = new SoundPlayer(Resources.inicio);
+                SoundPlayer errorSound = new SoundPlayer(Resources.click);
                 errorSound.Play();
             }
 

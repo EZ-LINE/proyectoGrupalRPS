@@ -23,7 +23,7 @@ namespace Forms
         {
             this.nombreJugadores = nombreJugadores;
             this.resultados = resultados;
-            currentPlayer = 0;
+            currentPlayer = 1;
 
             InitializeComponent();
             PlayEndgameSequence();
@@ -32,16 +32,16 @@ namespace Forms
 
         private void PlayEndgameSequence() 
         {
-            UpdatePlayerCounter(0);
+            UpdatePlayerCounter(1);
             //Encontrar un archivo compatible wav es dolor. Esto va a crashear dado que este archivo no existe
-            SoundPlayer sadHorn = new SoundPlayer("resources/sadHorn.wav");
+            SoundPlayer sadHorn = new SoundPlayer(Resources.sadHorn);
+            sadHorn.Play();
+            //txtCongratulations.Text = "GAME: ...";
+            //System.Threading.Thread.Sleep(1000);
+            //txtCongratulations.Text = "GAME: COMPLETE";
+            //System.Threading.Thread.Sleep(200);
             
-            txtCongratulations.Text = "GAME: ...";
-            System.Threading.Thread.Sleep(1000);
-            txtCongratulations.Text = "GAME: COMPLETE";
-            System.Threading.Thread.Sleep(200);
-            //sadHorn.Play();
-            LoadPlayer(0);
+            LoadPlayer(1);
 
 
         }
@@ -53,22 +53,36 @@ namespace Forms
 
         public void LoadPlayer(int slot) 
         {
+            slot = slot - 1;
+            btnNextPlayer.Enabled = false;
+            btnPreviousPlayer.Enabled = false;
+            txtPlayerName.Text = nombreJugadores[slot];
+            txtWin.Text = "";
+            txtLoss.Text = "";
+            txtDraw.Text = "";
+            txtScore.Text = "";
+
+
             int timer = 150;
             ClackAndWait(timer);
             txtPlayerName.Text = nombreJugadores[slot];
             txtPlayerName.Visible = true;
-            ClackAndWait(timer);
+            //ClackAndWait(timer);
             txtWin.Text = ""+resultados[slot, 0];
             txtWin.Visible = true;
-            ClackAndWait(timer);
+            //ClackAndWait(timer);
             txtLoss.Text = "" + resultados[slot, 1];
             txtLoss.Visible = true;
-            ClackAndWait(timer);
+            //ClackAndWait(timer);
             txtDraw.Text = "" + resultados[slot, 2];
             txtDraw.Visible= true;
-            ClackAndWait(timer);
+            //ClackAndWait(timer);
             txtScore.Text = "" + resultados[slot, 3];
-            txtScore.Visible = true;    
+            txtScore.Visible = true;
+
+
+            btnNextPlayer.Enabled = true;
+            btnPreviousPlayer.Enabled = true;
         }
 
         //Esto podria ser incluso mas elegante si esta funcion recibiera el label entero con el texto a mostrar, 
@@ -99,17 +113,8 @@ namespace Forms
         private void btnNextPlayer_Click(object sender, EventArgs e)
         {
             //try to load next player
-            _ = currentPlayer < nombreJugadores.Length ? currentPlayer++ : currentPlayer = 0;
-            /*if (currentPlayer > nombreJugadores.Length)
-            {
-                currentPlayer++;
-   
-            }
-            else 
-            {
-                currentPlayer = 0;
-
-            }*/
+            _ = currentPlayer < nombreJugadores.Length ? currentPlayer++ : currentPlayer = 1;
+            UpdatePlayerCounter(currentPlayer);
             LoadPlayer(currentPlayer);
         }
 
@@ -121,7 +126,9 @@ namespace Forms
         private void btnPreviousPlayer_Click(object sender, EventArgs e)
         {
             //try to load previous player
-            _ = currentPlayer > 0 ? currentPlayer-- : currentPlayer = nombreJugadores.Length;
+            _ = currentPlayer > 1 ? currentPlayer-- : currentPlayer = nombreJugadores.Length;
+            UpdatePlayerCounter(currentPlayer);
+            LoadPlayer(currentPlayer);
         }
 
         private void playerLabel_Click(object sender, EventArgs e)
