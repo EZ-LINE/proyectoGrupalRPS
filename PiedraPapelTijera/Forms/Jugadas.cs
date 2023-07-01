@@ -132,7 +132,7 @@ namespace Forms
             }
             else
             { 
-                mainForm.OpenChildForms(new RPS_3Form(nombresJugadores, resultados));
+                
                 btnContinuar.Enabled = false;
                 btnJugar.Enabled = false;
             }
@@ -153,7 +153,7 @@ namespace Forms
             {
                 lblJugador.Text = $"{nombresJugadores[jugador]}";
             }
-            else if (ronda < nroRondas)
+            else if (ronda < nroRondas-1)
             {
 
                 ronda += 1;
@@ -161,6 +161,10 @@ namespace Forms
                 jugador = 0;
 
                 lblJugador.Text = $"{nombresJugadores[jugador]}";
+            }
+            else
+            {
+                mainForm.OpenChildForms(new RPS_3Form(nombresJugadores, resultados));
             }
 
 
